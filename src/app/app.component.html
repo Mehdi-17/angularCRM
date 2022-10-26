@@ -2,8 +2,17 @@
   <mat-toolbar color="primary">
     <span>{{title}}</span>
     <span class="fill-space"></span>
-    <span>Buttons</span>
+    <span>
+      <a mat-icon-button matTooltip="Home" routerLink="/home" routerLinkActive="is-active">
+        <mat-icon>home</mat-icon>
+      </a>
+    </span>
+    <span>
+      <a mat-icon-button matTooltip="Login" routerLink="/login" routerLinkActive="is-active">
+        <mat-icon>login</mat-icon>
+      </a>
+    </span>
   </mat-toolbar>
 </div>
 
-<crm-login></crm-login>
+<router-outlet></router-outlet>

@@ -8,12 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HelpComponent } from './component/help/help.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HelpComponent
+    HelpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

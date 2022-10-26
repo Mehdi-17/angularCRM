@@ -1,3 +1,4 @@
+import { AuthenticationService } from './authentication.service';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -6,6 +7,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'crm-login',
@@ -15,17 +17,19 @@ import {
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   minLength: number = 3;
+
   errorMessagesLogin: { [key: string]: string } = {
     required: 'Login obligatoire',
-    minLength: `Le login doit faire ${this.minLength} caractères.`,
+    minlength: `Le login doit faire ${this.minLength} caractères.`,
   };
+
   errorMessagesPassword: { [key: string]: string } = {
     required: 'Mot de passe obligatoire',
-    minLength: `Le mot de passe doit faire ${this.minLength} caractères`,
+    minlength: `Le mot de passe doit faire ${this.minLength} caractères`,
     no$InPassword: `Le caractère $ n'est pas autorisé`,
   };
 
-  constructor() {
+  constructor(private authent: AuthenticationService, private router: Router) {
     this.loginForm = new FormGroup({
       login: new FormControl('', [
         Validators.required,
@@ -42,7 +46,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
-    console.log(this.loginForm);
+    const user: any = this.authent.authentUser(
+      this.loginForm.value.login,
+      this.loginForm.value.password
+    );
+    console.log(user);
+    if (user) {
+      this.router.navigateByUrl('/home');
+    }
   }
 }
 
