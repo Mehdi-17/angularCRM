@@ -15,6 +15,15 @@ import {
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   minLength: number = 3;
+  errorMessagesLogin: { [key: string]: string } = {
+    required: 'Login obligatoire',
+    minLength: `Le login doit faire ${this.minLength} caractères.`,
+  };
+  errorMessagesPassword: { [key: string]: string } = {
+    required: 'Mot de passe obligatoire',
+    minLength: `Le mot de passe doit faire ${this.minLength} caractères`,
+    no$InPassword: `Le caractère $ n'est pas autorisé`,
+  };
 
   constructor() {
     this.loginForm = new FormGroup({

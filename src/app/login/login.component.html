@@ -5,21 +5,14 @@
         <mat-label for="login">Login</mat-label>
         <input matInput type="text" id="login" formControlName="login" />
       </mat-form-field>
-      <span *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
-        <span *ngIf="loginForm.get('login')?.errors?.['required']">Login obligatoire</span>
-        <span *ngIf="loginForm.get('login')?.errors?.['minlength']">Taille obligatoire : {{ minLength }}</span>
-      </span>
+      <crm-help [field]="loginForm.get('login')!" [errorMessages]="errorMessagesLogin"></crm-help>
     </p>
     <p>
       <mat-form-field>
         <mat-label for="password">Password</mat-label>
         <input matInput type="password" id="password" formControlName="password" />
       </mat-form-field>
-      <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-        <span *ngIf="loginForm.get('password')?.errors?.['required']">Password obligatoire</span>
-        <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Taille obligatoire : {{ minLength }}</span>
-        <span *ngIf="loginForm.get('password')?.errors?.['no$InPassword']">Caractère $ non autorisé dans le mdp</span>
-      </span>
+      <crm-help [field]="loginForm.get('password')!" [errorMessages]="errorMessagesPassword"></crm-help>
     </p>
     <p>
       <button mat-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Connexion</button>
