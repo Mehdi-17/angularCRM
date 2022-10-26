@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angularCRM'`, () => {
+  it(`should have as title 'AngularCRM'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angularCRM');
+    expect(app.title).toEqual('AngularCRM');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angularCRM app is running!');
+    expect(compiled.querySelector('span')?.textContent).toContain('AngularCRM app is running!');
   });
 });
