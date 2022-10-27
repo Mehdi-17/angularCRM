@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" [style]="'width:'+widthHeight+'; height:'+ widthHeight">
     <p>
       <mat-form-field>
         <mat-label for="login">Login</mat-label>
@@ -15,7 +15,7 @@
       <crm-help [field]="loginForm.get('password')!" [errorMessages]="errorMessagesPassword"></crm-help>
     </p>
     <p>
-      <button mat-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Connexion</button>
+      <button mat-raised-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Connexion</button>
     </p>
   </form>
 </div>

@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   minLength: number = 3;
+  widthHeight: string = '300px';
 
   errorMessagesLogin: { [key: string]: string } = {
     required: 'Login obligatoire',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authent: AuthenticationService, private router: Router) {
     this.authent.disconnect();
-    
+
     this.loginForm = new FormGroup({
       login: new FormControl('', [
         Validators.required,

@@ -30,6 +30,10 @@ export class AuthenticationService {
     return this.user;
   }
 
+  get authenticated(): boolean{
+    return !!this.user;
+  }
+
   disconnect(): void {
     sessionStorage.clear();
     this.user = undefined;
