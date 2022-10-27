@@ -1,3 +1,4 @@
+import { User } from './model/user';
 import { AuthenticationService } from './authentication.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private authent: AuthenticationService, private router: Router) {
+    this.authent.disconnect();
+    
     this.loginForm = new FormGroup({
       login: new FormControl('', [
         Validators.required,
@@ -46,10 +49,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
-    const user: any = this.authent.authentUser(
-      this.loginForm.value.login,
-      this.loginForm.value.password
-    );
+    const user: User = this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
     console.log(user);
     if (user) {
       this.router.navigateByUrl('/home');
