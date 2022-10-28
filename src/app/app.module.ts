@@ -1,7 +1,7 @@
 import { JWTInterceptorService } from './common/jwtinterceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,12 +11,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { HelpComponent } from './component/help/help.component';
 import { HomeComponent } from './home/home.component';
+import { PhonePipe } from './common/phone.pipe';
+import { ConsumerListComponent } from './consumer/consumer-list/consumer-list.component';
+import { ConsumerFicheComponent } from './consumer/consumer-fiche/consumer-fiche.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HelpComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, HelpComponent, HomeComponent, PhonePipe, ConsumerListComponent, ConsumerFicheComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

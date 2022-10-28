@@ -1,0 +1,21 @@
+<input type="text" [(ngModel)]="searchedName" (keyup)="doSearch()" />
+<span>
+  <a mat-icon-button matTooltip="ConsumersFiche" routerLink="/consumer">
+    <mat-icon>person_add</mat-icon>
+  </a>
+</span>
+
+<table>
+  <tr *ngFor="let consumer of consumersList | async">
+    <td>{{ consumer.civility }}</td>
+    <td>{{ consumer.firstname }}</td>
+    <td>{{ consumer.lastname }}</td>
+    <td>{{ consumer.email }}</td>
+    <td>{{ consumer.phone | phone }}</td>
+    <td>
+      <a mat-icon-button (click)="edit(consumer)">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </tr>
+</table>

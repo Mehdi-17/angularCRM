@@ -1,3 +1,5 @@
+import { ConsumerFicheComponent } from './consumer/consumer-fiche/consumer-fiche.component';
+import { ConsumerListComponent } from './consumer/consumer-list/consumer-list.component';
 import { AuthenticationGuard } from './login/authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -7,7 +9,26 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'consumers',
+    component: ConsumerListComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'consumer',
+    component: ConsumerFicheComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'consumer/:id',
+    component: ConsumerFicheComponent,
+    canActivate: [AuthenticationGuard],
+  },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];
 
