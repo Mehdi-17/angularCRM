@@ -9,6 +9,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'crm-login',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  private subs: Subscription[] = [];
   loginForm: FormGroup;
   minLength: number = 3;
   widthHeight: string = '300px';
@@ -50,11 +52,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
-    const user: User = this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
-    console.log(user);
-    if (user) {
-      this.router.navigateByUrl('/home');
-    }
+    this.subs.push(this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password)
+    .subscribe({
+      next:(user: User)=>{this.router.navigateByUrl('/home')},
+      error: (error: Error)=>{alert(error)},
+      complete: ()=>{}
+    }));
+  }
+
+  ngOnDestroy(): void{
+    this.subs.forEach(sub=>sub.unsubscribe());
   }
 }
 
