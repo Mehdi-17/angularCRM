@@ -33,4 +33,8 @@ export class ConsumerService {
     return this.http.post<void>('api/consumers', consumer);
   }
 
+  delete(id: number): Observable<void>{
+    return this.http.delete<void>(`api/consumers/${id}`);
+  }
+
 }

@@ -28,18 +28,22 @@ export class ConsumerFicheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(
-      (param: ParamMap) => {
-        const consumerId = param.get('id');
-          if(consumerId){
-            this.consumerService.getConsumerById(consumerId).subscribe({
-              next:(consumer: Consumer)=>{this.addConsumerForm.patchValue(consumer)},
-              error: (error: Error)=> {},
-              complete: ()=>{}
-            });
+    this.subs.push(
+      this.activatedRoute.paramMap.subscribe(
+        (param: ParamMap) => {
+          const consumerId = param.get('id');
+            if(consumerId){
+              this.subs.push(
+                this.consumerService.getConsumerById(consumerId).subscribe({
+                  next:(consumer: Consumer)=>{this.addConsumerForm.patchValue(consumer)},
+                  error: (error: Error)=> {},
+                  complete: ()=>{}
+                })
+              );
+            }
           }
-        }
-    )
+      )
+    );
   }
 
   ngOnDestroy(): void {

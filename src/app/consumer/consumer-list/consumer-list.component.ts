@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Consumer } from './../model/consumer';
 import { ConsumerService } from './../consumer.service';
-import { Observable } from 'rxjs';
+import { Observable, Cons } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -34,5 +34,19 @@ export class ConsumerListComponent implements OnInit {
   edit(consumer: Consumer): void {
     const id: number = consumer.id;
     this.router.navigateByUrl(`/consumer/${id}`);
+  }
+
+  delete(id: number): void{
+    this.consumerService.delete(id).subscribe({
+      next:()=>{
+        if(this.searchedName){
+          this.doSearch();
+        }else{
+          this.consumersList = this.consumerService.getConsumersList();
+        }
+      },
+      error:(error: Error)=>{console.error(error)},
+      complete: ()=>{}
+    });
   }
 }
